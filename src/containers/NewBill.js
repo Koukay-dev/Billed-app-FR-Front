@@ -20,6 +20,14 @@ export default class NewBill {
     const file = this.document.querySelector(`input[data-testid="file"]`).files[0]
     const filePath = e.target.value.split(/\\/g)
     const fileName = filePath[filePath.length-1]
+
+    const fileTestRegexp = /[a-zA-Z +_-\d]+\.(jpg|png|jpeg)/g // test fichier ajouté #1
+    if(!fileTestRegexp.test(fileName)){
+      e.target.value = ''
+      alert('Format ou nom du fichier invalide')
+      return ''
+    }
+
     const formData = new FormData()
     const email = JSON.parse(localStorage.getItem("user")).email
     formData.append('file', file)
@@ -34,7 +42,9 @@ export default class NewBill {
         }
       })
       .then(({fileUrl, key}) => {
-        console.log(fileUrl)
+        if(!fileUrl){ // test fichier ajouté #2
+          throw new Error('Le fichier fournit n\'est pas valide')
+        }
         this.billId = key
         this.fileUrl = fileUrl
         this.fileName = fileName

@@ -27,6 +27,8 @@ export default class {
     $('#modaleFile').modal('show')
   }
 
+  
+
   getBills = () => {
     if (this.store) {
       return this.store
@@ -34,10 +36,13 @@ export default class {
       .list()
       .then(snapshot => {
         const bills = snapshot
-          .map(doc => {
+        .map(doc => {
             try {
+              console.log(doc)
               return {
                 ...doc,
+                fileName : doc.fileName === 'null' ? 'Pas de Justificatif fournit' : doc.fileName,
+                fileUrl: doc.fileUrl.contains('null') ? '' : doc.fileUrl,
                 date: formatDate(doc.date),
                 status: formatStatus(doc.status)
               }
