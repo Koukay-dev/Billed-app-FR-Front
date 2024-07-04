@@ -24,6 +24,7 @@ const rows = (data) => {
     const antiChronoSort = (a, b) => {
       return Date.parse(b.date) - Date.parse(a.date)
     }
+    console.log(data.sort(antiChronoSort))
     return data.sort(antiChronoSort).map(bill => row(bill)).join("")
   }
   return ""
@@ -53,7 +54,6 @@ export default ({ data: bills, loading, error }) => {
   } else if (error) {
     return ErrorPage(error)
   }
-  
   return (`
     <div class='layout'>
       ${VerticalLayout(120)}

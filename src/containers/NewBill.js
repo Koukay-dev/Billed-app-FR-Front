@@ -42,9 +42,6 @@ export default class NewBill {
         }
       })
       .then(({fileUrl, key}) => {
-        if(!fileUrl){ // test fichier ajouté #2
-          throw new Error('Le fichier fournit n\'est pas valide')
-        }
         this.billId = key
         this.fileUrl = fileUrl
         this.fileName = fileName

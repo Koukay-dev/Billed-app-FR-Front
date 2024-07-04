@@ -25,8 +25,8 @@ describe("Given I am connected as an employee", () => {
       window.onNavigate(ROUTES_PATH.Bills)
       await waitFor(() => screen.getByTestId('icon-window'))
       const windowIcon = screen.getByTestId('icon-window')
-      //to-do write expect expression
-
+      // expect ajouté
+      expect(windowIcon.classList).toContain('active-icon')                                                                                                                                                                                                                                                                          
     })
     test("Then bills should be ordered from earliest to latest", () => {
       document.body.innerHTML = BillsUI({ data: bills })
@@ -34,6 +34,17 @@ describe("Given I am connected as an employee", () => {
       const antiChrono = (a, b) => ((a < b) ? 1 : -1)
       const datesSorted = [...dates].sort(antiChrono)
       expect(dates).toEqual(datesSorted)
+    })
+
+    when("I click on the Eye Icon a modal containing the image from the selected bills display", () => {
+      // test unitaire de la fonction handleClickIconEye
+      // test intégration du fonctionnement de cette fonction
+    })
+    when("I click on the New Bill Button I should the new Bill Page", () => {
+
+    })
+    test('The Bills should display properly with correct information', ()=>{ // Test GetBills
+
     })
   })
 })

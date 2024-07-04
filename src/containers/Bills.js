@@ -35,14 +35,16 @@ export default class {
       .bills()
       .list()
       .then(snapshot => {
+        const antiChronoSort = (a, b) => {
+          return Date.parse(b.date) - Date.parse(a.date)
+        }
         const bills = snapshot
+        .sort(antiChronoSort)
         .map(doc => {
             try {
               console.log(doc)
               return {
                 ...doc,
-                fileName : doc.fileName === 'null' ? 'Pas de Justificatif fournit' : doc.fileName,
-                fileUrl: doc.fileUrl.contains('null') ? '' : doc.fileUrl,
                 date: formatDate(doc.date),
                 status: formatStatus(doc.status)
               }
