@@ -42,7 +42,6 @@ export default class {
         .sort(antiChronoSort)
         .map(doc => {
             try {
-              console.log(doc)
               return {
                 ...doc,
                 date: formatDate(doc.date),
