@@ -14,6 +14,7 @@ import router from "../app/Router.js";
 
 
 jest.mock("../app/store", () => mockStore)
+console.log = jest.fn()
 
 
 describe("Given I am connected as an employee", () => {
