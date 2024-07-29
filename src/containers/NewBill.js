@@ -20,7 +20,6 @@ export default class NewBill {
     const fileInput = this.document.querySelector(`input[data-testid="file"]`)
     const file = fileInput.files[0]
     const fileName = file.name
-    console.log(fileName)
     const fileTestRegexp = /[a-zA-Z +_-\d]+\.(jpg|png|jpeg)/g // test fichier ajouté #1
     if(!fileTestRegexp.test(fileName)){
       fileInput.value = ''
@@ -49,7 +48,7 @@ export default class NewBill {
   }
   handleSubmit = e => {
     e.preventDefault()
-    console.log('e.target.querySelector(`input[data-testid="datepicker"]`).value', e.target.querySelector(`input[data-testid="datepicker"]`).value)
+    //console.log('e.target.querySelector(`input[data-testid="datepicker"]`).value', e.target.querySelector(`input[data-testid="datepicker"]`).value)
     const email = JSON.parse(localStorage.getItem("user")).email
     const bill = {
       email,
